@@ -5,7 +5,7 @@
 @endif
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 	<div class="container">
-		<a class="navbar-brand" href="#">Uniques</a>
+		<a class="navbar-brand" href="/">Uniques</a>
 
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myOwnNav" aria-controls="myOwnNav" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
@@ -21,22 +21,22 @@
 						Productos
 					</a>
 					<div class="dropdown-menu" aria-labelledby="dropNavBar">
-						<a class="dropdown-item" href="/products">Productos</a>
-            si es un usuario logueado
+						<a class="dropdown-item" href="/products">Products</a>
+            <!-- //si es un usuario logueado -->
 						@auth
 							@if (Auth::user()->isAdmin())
-							<a class="dropdown-item" href="/products/create">Crear producto</a>
+							<a class="dropdown-item" href="/new-product">Create product</a>
+							<a class="dropdown-item" href="/product-edit">Edit product</a>
 							@endif
 						@endauth
 					</div>
 				</li>
-				<li class="nav-item"><a class="nav-link" href="/genres">Genres & Movies</a></li>
 			</ul>
 
 			<ul class="navbar-nav ml-auto" style="display: flex; align-items: center;">
-        si es un usuario invitado
+        <!-- {{si es un usuario invitado}} -->
 				@guest
-					<li class="nav-item"><a class="nav-link" href="/register">Registro</a></li>
+					<li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
 					<li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
 				@else
 					<li class="nav-item dropdown">
@@ -45,7 +45,7 @@
 							Hola {{ Auth::user()->name }}
 						</a>
 						<div class="dropdown-menu" aria-labelledby="dropNavBar">
-							<a class="dropdown-item" href="/profile">Mi perfil</a>
+							<a class="dropdown-item" href="/profile">My Profile</a>
 							<form action="/logout" method="post">
 								@csrf
 								<button type="submit" class="dropdown-item">Salir</button>

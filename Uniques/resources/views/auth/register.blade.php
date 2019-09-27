@@ -107,14 +107,14 @@
                         </div>
 
                         <div class="form-row col-md-10 col-md-offset-1 ">
-                          <div class="form-group col-md-8 padding-null hidden @error('province') has-error @enderror text-center">
-                              <label for="province" class="col-md-12 text-center">{{ __('Provincia') }}</label>
-                                <select id="province" class=" form-control " name="province" value="{{ old('province') }}"  autocomplete="province" autofocus>
+                          <div class="form-group col-md-8 padding-null hidden @error('city') has-error @enderror text-center">
+                              <label for="city" class="col-md-12 text-center">{{ __('Provincia') }}</label>
+                                <select id="city" class=" form-control " name="city" value="{{ old('city') }}"  autocomplete="city" autofocus>
                                 </select>
                                 <div class="opps">
                                   <!-- Mensaje de error -->
                                 </div>
-                                @error('province')
+                                @error('city')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

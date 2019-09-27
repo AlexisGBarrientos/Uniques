@@ -1,29 +1,44 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+//Ruta Raiz
 
 Route::get('/', function () {
-    return view('home');
+  return view('home');
 });
 
+//Ruta Perfil
 
 Route::get('/profile', function () {
-	if (Auth::user()) {
-		echo "Hola " . Auth::user()->name . "<br>";
-		echo "<img src='/storage/fotos/" . Auth::user()->avatar . "' width='100' /><br>";
-	} else {
-		return redirect('/register');
-	}
-})->name('profile');
+  return view('profile');
+})->name('profile')->middleware('auth');
+
+//Ruta Preguntas Frecuentes
+
+Route::get('/faq', function () {
+  return view('FAQ');
+});
+
+//Rutas register/loguin/log-out ademas de CRUD
+
+Route::get('/Register', 'RegisterController@Validator');
+Route::post('/Register', 'RegisterController@Create');
+Route::post('/profile', 'UserController@update_avatar');
+
+Route::get('/user-edit/{user}/edit', 'UserController@edit');
+Route::patch('user-edit/{user}', 'UserController@update');
+
+//Ruta CRUD de productos
+
+Route::get('/product-list', 'ProductController@listado')->name('product.list');
+Route::get('/detalle/{id}', 'ProductController@detalle')->name('details');
+Route::get('/new-product', 'ProductController@createProduct')->middleware('auth','is_Admin');
+Route::post('/new-product', 'ProductController@uploadProduct');
+Route::post('/delete-product', 'ProductController@delete');
+Route::get('/product-edit/{product}/edit', 'ProductController@edit');
+Route::patch('/product-edit/{product}', 'ProductController@updateProduct');
+
+//Ruta Buscador
+
 
 Auth::routes();
 
