@@ -8,13 +8,14 @@
   </head>
   <body>
 
-    <!-- {{- La función include está incluyendo un archivo que de por si sabe que esta localizada en resources/views -}} -->
+    {{-- Los comentarios en blade son así, te sobra esto: <!-- --> --}}
+    {{-- La función include está incluyendo un archivo que de por si sabe que esta localizada en resources/views --}}
     @include( 'partials.navbar' )
 
-    <!-- {{- insertamos el contenido de cada una de las vistas cuando se las requiera -}} -->
+   {{-- insertamos el contenido de cada una de las vistas cuando se las requiera --}} 
 		@yield( 'mainContent' )
 
-    <!-- {{- Está incluyendo el archivo footer -}} -->
+    {{-- Está incluyendo el archivo footer --}}
     @include( 'partials.footer' )
 
   </body>

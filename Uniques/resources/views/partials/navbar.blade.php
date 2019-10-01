@@ -15,14 +15,15 @@
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item"><a class="nav-link" href="/">Home</a></li>
 				<li class="nav-item"><a class="nav-link" href="/products">Products</a></li>
-				<li class="nav-item"><a class="nav-link" href="/FAQ">Frequent questions</a></li>
+				{{-- las rutas van en minúscula --}}
+				<li class="nav-item"><a class="nav-link" href="/faq">Frequent questions</a></li>
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" id="dropNavBar" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						Productos
 					</a>
 					<div class="dropdown-menu" aria-labelledby="dropNavBar">
-						<a class="dropdown-item" href="/products">Products</a>
-            <!-- //si es un usuario logueado -->
+						<a class="dropdown-item" href="/product-list">Products</a>
+            {{-- si es un usuario logueado --}}
 						@auth
 							@if (Auth::user()->isAdmin())
 							<a class="dropdown-item" href="/new-product">Create product</a>
@@ -34,7 +35,7 @@
 			</ul>
 
 			<ul class="navbar-nav ml-auto" style="display: flex; align-items: center;">
-        <!-- {{si es un usuario invitado}} -->
+        {{-- si es un usuario invitado --}}
 				@guest
 					<li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
 					<li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
