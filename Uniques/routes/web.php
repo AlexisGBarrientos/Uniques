@@ -20,8 +20,9 @@ Route::get('/faq', function () {
 
 //Rutas register/loguin/log-out ademas de CRUD
 
-Route::get('/Register', 'RegisterController@Validator');
-Route::post('/Register', 'RegisterController@Create');
+// El nombre de la ruta va siempre en minúsculas
+Route::get('/register', 'RegisterController@Validator');
+Route::post('/register', 'RegisterController@Create');
 Route::post('/profile', 'UserController@update_avatar');
 
 Route::get('/user-edit/{user}/edit', 'UserController@edit');

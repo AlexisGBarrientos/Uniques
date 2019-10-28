@@ -7,15 +7,16 @@
 		<link rel= "stylesheet" href= "https://use.fontawesome.com/releases/v5.8.2/css/all.css">
   </head>
   <body>
-
-    <!-- {{- La función include está incluyendo un archivo que de por si sabe que esta localizada en resources/views -}} -->
+    @include('partials.header')
+    {{-- La función include está incluyendo un archivo que de por si sabe que esta localizada en resources/views --}}
     @include( 'partials.navbar' )
 
-    <!-- {{- insertamos el contenido de cada una de las vistas cuando se las requiera -}} -->
+   {{-- insertamos el contenido de cada una de las vistas cuando se las requiera --}}
 		@yield( 'mainContent' )
 
-    <!-- {{- Está incluyendo el archivo footer -}} -->
+    {{-- Está incluyendo el archivo footer --}}
     @include( 'partials.footer' )
-
+    <script src="/js/app.js"></script>
+    <script src="/js/main.js"></script>
   </body>
 </html>
