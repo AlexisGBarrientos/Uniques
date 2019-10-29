@@ -23,7 +23,7 @@ window.addEventListener('load', function(){
 				})
 				.then(function(jsonResponse){
 					for (var provincia of jsonResponse.data) {
-						provincias.innerHTML += `<option value="${provincia.nombre}">${provincia.nombre}</option>`;
+						provincias.innerHTML += `<option value="${provincia.id}">${provincia.nombre}</option>`;
 					}
 					console.log(jsonResponse.data);
 					provincias.parentElement.classList.remove('hidden');

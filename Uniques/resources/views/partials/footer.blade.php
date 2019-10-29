@@ -1,5 +1,10 @@
   <br>
   <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
 	<footer class="text-center">
 		<p class="red">Copyright 2019 - Alexis Barrientos</p>
 	</footer>
