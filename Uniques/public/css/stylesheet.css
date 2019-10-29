@@ -4,7 +4,7 @@
 }
 
 .card {
-  background-color:rgba(52, 203, 103, 0.93);
+  background-color:rgba(170, 249, 154, 0.93);
   border-radius: 15px;
 }
 
@@ -19,8 +19,12 @@ body {
   height: 90vh;
 }
 
+nav {
+  background-color: rgba(123, 200, 86, 0.93);
+}
+
 footer {
-  background-color: rgba(52, 203, 103, 0.93);
+  background-color:rgba(64, 186, 69, 0.94);
   width: 100%;
   height: 10vh;
   margin-bottom: 0;

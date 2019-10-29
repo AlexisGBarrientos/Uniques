@@ -23,7 +23,7 @@ window.addEventListener('load', function(){
 				})
 				.then(function(jsonResponse){
 					for (var provincia of jsonResponse.data) {
-						provincias.innerHTML += `<option value="${provincia.id}">${provincia.nombre}</option>`;
+						provincias.innerHTML += `<option value="${provincias.id}">${provincias.nombre}</option>`;
 					}
 					console.log(jsonResponse.data);
 					provincias.parentElement.classList.remove('hidden');
@@ -106,7 +106,7 @@ window.addEventListener('load', function(){
 
 				}
 
-				if (oneElement.name === 'file') {
+				if (elemento.name === 'file') {
 					elemento.addEventListener('change', function () {
 
 						var avatarName = this.value.split('\\').pop();

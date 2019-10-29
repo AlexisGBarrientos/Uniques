@@ -117,7 +117,7 @@
                         <div class="form-row col-md-12">
                           <div  class="form-group col-md-12 padding-null @error('city') has-error @enderror text-center">
                               <label for="city" class="col-md-12 text-center">{{ __('City') }}</label>
-                                <select id="city" class=" form-control " name="city" value="{{ old('city') }}"  autocomplete="city" autofocus>
+                                <select id="city" class="form-control" name="city" value="{{ old('city') }}"  autocomplete="city" autofocus>
                                 </select>
                                 <div class="opps">
                                   <!-- Mensaje de error -->

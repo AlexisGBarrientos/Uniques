@@ -3,7 +3,7 @@
 		{{ session('adminError') }}
 	</div>
 @endif
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-light bg-green">
 	<div class="container">
 		<a class="navbar-brand" href="/">Uniques</a>
 
