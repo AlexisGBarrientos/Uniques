@@ -17,8 +17,11 @@
 
                               <div class="col-md-12">
                                   <input id="name" type="text" placeholder="Enter your name" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                  {{-- Aquí tenés que crear el <span> antes de @error('name'), si no, el <span> nunca va a existir, pues el mismo depende de la validación de Laravel --}}
+                                  
+                                  <span></span> {{-- así si --}}
 
-                                  @error('name')
+                                  @error('name') {{-- así no --}}
                                       <span class="invalid-feedback" role="alert">
                                           <strong>{{ $message }}</strong>
                                       </span>

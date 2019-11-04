@@ -22,10 +22,11 @@ window.addEventListener('load', function(){
 					return response.json();
 				})
 				.then(function(jsonResponse){
-					for (var provincia of jsonResponse.data) {
-						provincias.innerHTML += `<option value="${provincias.id}">${provincias.nombre}</option>`;
+					for (var provincia of jsonResponse.provincias) {
+						// vos tenías jsonResponse.data y debe ser jsonResponse.provincias
+						provincias.innerHTML += `<option value="${provincia.id}">${provincia.nombre}</option>`; // aquí es provincia.id y provincia.nombre
 					}
-					console.log(jsonResponse.data);
+					console.log(jsonResponse.provincias);
 					provincias.parentElement.classList.remove('hidden');
 				});
 			} else {
