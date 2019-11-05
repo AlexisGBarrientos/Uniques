@@ -22,8 +22,8 @@ window.addEventListener('load', function(){
 					return response.json();
 				})
 				.then(function(jsonResponse){
-					for (var provincia of jsonResponse.data) {
-						provincias.innerHTML += `<option value="${provincias.id}">${provincias.nombre}</option>`;
+					for (var provincia of jsonResponse.provincias) {
+						provincias.innerHTML += `<option value="${provincia.id}">${provincia.nombre}</option>`;
 					}
 					console.log(jsonResponse.data);
 					provincias.parentElement.classList.remove('hidden');
@@ -37,7 +37,7 @@ window.addEventListener('load', function(){
 
 	var elementosDelFormulario = elFormulario.elements;
 	// console.log(elementosDelFormulario);
-	var arrayDeElementos = Array.from(elFormulario);
+	var arrayDeElementos = Array.from(elementosDelFormulario);
 
 	arrayDeElementos.shift(); //quitamos la 1er posicion, el input hidden del token
 	arrayDeElementos.pop(); //quitamos el ultimo elemento, el submit
@@ -47,6 +47,9 @@ window.addEventListener('load', function(){
 
 	//Validacion primaria
 	arrayDeElementos.forEach( function (elemento) {
+
+
+
 		elemento.addEventListener('blur', function(){
 			if ( this.value.trim() == '') {
 				this.classList.add('is-invalid');
@@ -60,7 +63,7 @@ window.addEventListener('load', function(){
 
 				//validacion de Campos del formulario
 				if (this.name === 'name') {
-					if (this.value.length > 3) {
+					if (this.value.length < 3) {
 						this.classList.add('is-invalid');
 						this.nextElementSibling.innerHTML = 'Your name must have more than 3 letters';
 						errors[this.name] = true;
@@ -68,7 +71,7 @@ window.addEventListener('load', function(){
 				}
 
 				if (this.name === 'surname') {
-					if (this.value.length > 3) {
+					if (this.value.length < 3) {
 						this.classList.add('is-invalid');
 						this.nextElementSibling.innerHTML = 'Your surname must have more than 3 letters';
 						errors[this.name] = true;
@@ -91,33 +94,16 @@ window.addEventListener('load', function(){
 				}
 				}
 
-				if (this.name === 'file') {
-					this.addEventListener('chanfe', function () {
+				if (elemento.name === 'foto') {
+					elemento.addEventListener('change', function () {
 						var fileName = this.value.split('\\').pop();
 						this.nextElementSibling.innerText = fileName;
 
-						var fileExt = this.value.split('.').pop();
+						var fileExt = this.value.split('.').pop(); //quitamos la extension de dicho archivo
 
 						var imageType = ['jpg','jpeg','png'];
 
-						var myExt = imageType.find()
-					})
-				} else {
-
-				}
-
-				if (elemento.name === 'file') {
-					elemento.addEventListener('change', function () {
-
-						var avatarName = this.value.split('\\').pop();
-						this.nextElementSibling.innerText = avatarName
-
-						var fileExt = this.value.split('.').pop();
-
-
-						var imageType = ['jpg', 'jpeg', 'png',];
-
-						var myExt= imageType.find(function (ext) {
+						var myExt = imageType.find(function(ext){
 							return ext === fileExt;
 						});
 
@@ -133,19 +119,24 @@ window.addEventListener('load', function(){
 
 							delete errors[this.name];
 						}
+
 					})
+				} else {
+
 				}
+
+
 
 		})
 	});
 				elFormulario.addEventListener('submit', function (event) {
-				elementosDelFormulario.forEach(function (elemento) {
+				arrayDeElementos.forEach(function (elemento) {
 					var finalValue = elemento.value.trim();
 
 					if (finalValue === '') {
 						errors[elemento.name] = true;
 					}
-				});
+				})
 
 				if (Object.keys(errors).length > 0) {
 					alert('Please complete the fields');
