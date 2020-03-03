@@ -4,7 +4,6 @@
 @section('pageTitle', 'Create Product')
 
 @section('mainContent')
-	<!-- Listado de peliculas -->
 
 	<div class="container" style="margin-top:30px; margin-bottom: 30px;">
 		<h2>Create Product</h2>
@@ -33,22 +32,17 @@
 				</div>
 
 				<div class="col-6">
-					<label>Image:</label>
-					<div class="custom-file">
-						<input type="file" class="custom-file-input" name="image">
-    				<label class="custom-file-label">Choose file...</label>
-					</div>
-					@error ('image')
-						<i style="color: red;"> {{ $errors->first('image') }}</i>
-					@enderror
-				</div>
-
-				<div class="col-6">
 					<div class="form-group">
 						<label>Brand:</label>
-						<input type="text" name="brand" class="form-control">
+						<select class="select" name="brand_id">
+							<option>Choise a Brand</option>
+							@foreach ($brands as $brand)
+								<option value=" {{ $brand->id }} "> {{ $brand->name }} </option>
+							@endforeach
+						</select>
+
 						@error ('brand')
-							<i style="color: red;"> {{ $errors->first('brand') }}</i>
+							<span>{{ $errors->first('brand') }}</span>
 						@enderror
 					</div>
 				</div>
@@ -56,17 +50,56 @@
 				<div class="col-6">
 					<div class="form-group">
 						<label>Category:</label>
-						<select class="form-control" name="category_id">
-							<option value="">Choose category</option>
-							@foreach ($categories as $category)
-								<option value="{{ $category->id }}"> {{ $categories->name }}</option>
-							@endforeach
-						</select>
-						@error ('category_id')
-							<i style="color: red;"> {{ $errors->first('category_id') }}</i>
+							<select class="select" name="category_id">
+								<option>Choise a Category</option>
+								@foreach ($categories as $category)
+									<option value=" {{ $category->id }} "> {{ $category->name }} </option>
+								@endforeach
+							</select>
+							@error ('category')
+								<span>{{ $errors->first('category') }}</span>
+							@enderror
+					</div>
+				</div>
+
+				<div class="col-6">
+					<div class="form-group">
+						<label>Color</label>
+							<select class="select" name="color_id">
+								<option>Choise a Color</option>
+								@foreach ($colors as $color)
+									<option value="{{ $color->id }}"> {{ $color->name }} </option>
+								@endforeach
+							</select>
+							@error ('color')
+								<span>{{ $errors->first('color') }}</span>
+							@enderror
+					</div>
+				</div>
+
+				<div class="col-6">
+					<div class="form-group">
+						<label>description:</label>
+						<input type="text" name="description" class="form-control">
+						@error ('description')
+							<span>{{ $errors->first('description') }}</span>
 						@enderror
 					</div>
 				</div>
+
+
+				<div class="col-6">
+					<label>Image:</label>
+					<div class="custom-file">
+						<input type="file" class="custom-file-input" name="image">
+    				<label class="custom-file-label">Choose file...</label>
+					</div>
+					@error ('image')
+						<span>{{ $errors->first('image') }}</span> 
+					@enderror
+				</div>
+
+
 
 			</div>
 

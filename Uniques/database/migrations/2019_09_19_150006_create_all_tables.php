@@ -41,14 +41,17 @@ class CreateAllTables extends Migration
         // Foreign Key luego de crear las tablas a las que hacen referencia
 				$table->unsignedBigInteger('user_id')->nullable();
     		$table->foreign('user_id')->references('id')->on('users');
+
 				$table->unsignedBigInteger('brand_id')->nullable();
     		$table->foreign('brand_id')->references('id')->on('brands');
+
 				$table->unsignedBigInteger('category_id')->nullable();
     		$table->foreign('category_id')->references('id')->on('categories');
 
         $table->timestamps();
       });
 
+      //tabla pivot
       Schema::create('color_product', function (Blueprint $table) {
   			$table->bigIncrements('id');
         //Foreign Key

@@ -48,25 +48,35 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-      $message = [
-        'required' => 'El campo es obligatorio',
-        'string' => 'El campo debe ser un texto',
-        'max' => 'El campo debe tener como maximo :max carácteres',
-        'min' => 'El campo debe tener como minimo :min carácteres',
-        'email' => 'El campo debe ser de formato Email',
-        'unique' => 'La información ya se encuentra registrada',
-        'file' => 'El archivo  debe ser de tipo jgp/jpeg/png',
-      ];
+      // $message = [
+      //   'required' => 'El campo es obligatorio',
+      //   'string' => 'El campo debe ser un texto',
+      //   'max' => 'El campo debe tener como maximo :max carácteres',
+      //   'min' => 'El campo debe tener como minimo :min carácteres',
+      //   'email' => 'El campo debe ser de formato Email',
+      //   'unique' => 'La información ya se encuentra registrada',
+      //   'file' => 'El archivo  debe ser de tipo jgp/jpeg/png',
+      // ];
 
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'surname' => ['required', 'string', 'max:50'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'name' => ['required'],
+            'surname' => ['required'],
+            'email' => ['required'],
+            'password' => ['required'],
             'country' => ['required'],
-            'province' => ['required'],
-            'avatar' => ['required', 'image']
-        ], $message);
+            // 'city' => ['required'],
+            'avatar' => ['required']
+        ]);
+
+        // return Validator::make($data, [
+        //     'name' => ['required', 'string', 'max:255'],
+        //     'surname' => ['required', 'string', 'max:50'],
+        //     'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+        //     'password' => ['required', 'string', 'min:8'],
+        //     'country' => ['required'],
+        //     // 'city' => ['required'],
+        //     'avatar' => ['required', 'image']
+        // ], $message);
     }
 
     /**
@@ -78,6 +88,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
       $request = request();
+
       $imagen = $request->file('avatar');
 
 		if ($imagen) {
@@ -92,7 +103,7 @@ class RegisterController extends Controller
             'surname' => $data['surname'],
             'email' => $data['email'],
             'country' => $data['country'],
-            'city' => $data['city'],
+            // 'city' => $data['city'],
             'avatar' => $imagenFinal,
             'password' => Hash::make($data['password']),
         ]);

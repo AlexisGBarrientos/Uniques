@@ -10,12 +10,12 @@ use App\Color;
 
 class ProductController extends Controller
 {
-    public function listado(){
+    public function list(){
         $products = Product::all();
         return view ("products-list", compact('products'));
     }
 
-    public function detalle($id){
+    public function detail($id){
       $product = Product::find($id);
       return view("productsdetails", compact('product'));
     }
@@ -24,31 +24,33 @@ class ProductController extends Controller
 
     public function createProduct(){
       $colors=Color::all();
-      return view ("new-product", compact('colors'));
+      $brands = Brand::all();
+      $categories = Category::all();
+      return view ("new-product", compact('colors', 'brands', 'categories'));
     }
 
     public function uploadProduct(Request $req){
 
-      $rules=[
-        'name' => 'required|string|unique:products',
-        'brand' => 'required|string',
-        'category' => 'required|string',
-        'description' => 'required|string|min:50|unique:products',
-        'price' => 'required|decimal',
-        'image' => 'required|image',
-        'color_id' => 'numeric',
-      ];
-      $msj=[
-        'unique' => 'El campo :attribute se encuentra registrado',
-        'string' => 'El campo :attribute debe ser un texto',
-        'min' => 'El campo :attribute tiene un minimo  de :min caracteres',
-        'required' => 'El campo :attribute debe ser obligatorio',
-        'price' => 'El campo :attribute debe ser decimal',
-        'image' => 'El campo :attribute debe ser una imagen',
-        'numeric' => 'El campo :attribute debe ser un numero',
-      ];
-
-      $this->validate($req,$rules,$msj);
+      // $rules=[
+      //   'name' => 'required|string|unique:products',
+      //   'brand' => 'required|string',
+      //   'category' => 'required|string',
+      //   'description' => 'required|string|min:50|unique:products',
+      //   'price' => 'required',
+      //   'image' => 'required|image',
+      //   'color_id' => 'numeric',
+      // ];
+      // $msj=[
+      //   'unique' => 'El campo :attribute se encuentra registrado',
+      //   'string' => 'El campo :attribute debe ser un texto',
+      //   'min' => 'El campo :attribute tiene un minimo  de :min caracteres',
+      //   'required' => 'El campo :attribute debe ser obligatorio',
+      //   'price' => 'El campo :attribute debe ser decimal',
+      //   'image' => 'El campo :attribute debe ser una imagen',
+      //   'numeric' => 'El campo :attribute debe ser un numero',
+      // ];
+      //
+      // $this->validate($req,$rules,$msj);
 
 //Sube la imagen a "uploads" en storage/app/public
 

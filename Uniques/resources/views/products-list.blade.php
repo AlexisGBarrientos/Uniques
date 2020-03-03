@@ -10,12 +10,14 @@
 			@foreach ($products as $oneProduct)
 				<div class="col-md-6 col-lg-4">
 					<div class="card" style="margin-bottom: 30px">
-						<img src="/images/{{ $oneProduct['image'] }}" class="card-img-top" alt="imagen del producto">
+						<img src="/images/{{ $oneProduct['image'] }}" class="card-img-top" alt="product image">
 						<div class="card-body">
 							<h4 class="card-title">{{ $oneProduct['name'] }}</h4>
-							<p class="card-text">{{ substr($oneProduct['description'], 0, 145) }}...</p>
+							<p class="card-text"> {{ $oneProduct['brand_id'] }} </p>
+							<p class="card-text"> {{ $oneProduct['category_id'] }} </p>
+							<p class="card-text"> {{ substr($oneProduct['description'], 0, 145) }}... </p>
 
-							<a href="/products/{{ $oneProduct['id'] }}" class="btn btn-success">See Detail</a>
+							<a href="/detail/{{ $oneProduct['id'] }}" class="btn btn-success">See Detail</a>
 						</div>
 					</div>
 				</div>

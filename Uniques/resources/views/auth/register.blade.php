@@ -8,7 +8,7 @@
                 <!-- <div class="card-header">{{ __('Register') }}</div> -->
 
                 <div class="card-body">
-                    <form method="POST" class="theForm" action="{{ route('register') }}">
+                    <form method="POST" class="theForm" action="{{ route('register') }}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-row col-md-12">
@@ -16,13 +16,16 @@
                               <label for="name" class="col-md-12 col-form-label text-md-center">{{ __('Name') }}</label>
 
                               <div class="col-md-12">
-                                  <input id="name" type="text" placeholder="Enter your name" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                  <input id="name" type="text" placeholder="Enter your name" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}"  autocomplete="name" autofocus>
+                                  {{-- Aquí tenés que crear el <span> antes de @error('name'), si no, el <span> nunca va a existir, pues el mismo depende de la validación de Laravel --}}
 
+                                  <span></span> {{-- así si --}}
 
+                                  @error('name')
                                       <span class="invalid-feedback" role="alert">
-                                          <strong></strong>
+                                          <strong>{{$message}}</strong>
                                       </span>
-
+                                  @enderror
                               </div>
                           </div>
 
@@ -30,13 +33,14 @@
                               <label for="surname" class="col-md-12 col-form-label text-md-center">{{ __('Surname') }}</label>
 
                               <div class="col-md-12">
-                                  <input id="surname" type="text" placeholder="Enter you surname" class="form-control @error('surname') is-invalid @enderror" name="surname" value="{{ old('surname') }}" required autocomplete="surname" autofocus>
+                                  <input id="surname" type="text" placeholder="Enter you surname" class="form-control @error('surname') is-invalid @enderror" name="surname" value="{{ old('surname') }}"  autocomplete="surname" autofocus>
 
 
+                                      @error('surname')
                                       <span class="invalid-feedback" role="alert">
-                                          <strong></strong>
+                                          <strong>{{$message}}</strong>
                                       </span>
-
+                                      @enderror
                               </div>
                           </div>
                         </div>
@@ -46,13 +50,13 @@
                               <label for="email" class="col-md-12 col-form-label text-md-center">{{ __('Email') }}</label>
 
                               <div class="col-md-12">
-                                  <input id="email" type="email" placeholder="Enter your email address" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                  <input id="email" type="email" placeholder="Enter your email address" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}"  autocomplete="email">
 
-
+                                      @error('email')
                                       <span class="invalid-feedback" role="alert">
-                                          <strong></strong>
+                                          <strong>{{$message}}</strong>
                                       </span>
-
+                                      @enderror
                               </div>
                           </div>
 
@@ -60,13 +64,13 @@
                               <label for="Re-email" class="col-md-12 col-form-label text-md-center">{{ __('Confirm Email') }}</label>
 
                               <div class="col-md-12">
-                                  <input id="Re-email" type="Re-email" placeholder="Confirm your email" class="form-control @error('Re-email') is-invalid @enderror" name="Re-email" value="{{ old('Re-email') }}" required autocomplete="Re-email">
+                                  <input id="Re-email" type="Re-email" placeholder="Confirm your email" class="form-control @error('Re-email') is-invalid @enderror" name="Re-email" value="{{ old('Re-email') }}"  autocomplete="Re-email">
 
-
+                                      @error('Re-email')
                                       <span class="invalid-feedback" role="alert">
-                                          <strong></strong>
+                                          <strong>{{$message}}</strong>
                                       </span>
-
+                                      @enderror
                               </div>
                           </div>
 
@@ -77,13 +81,13 @@
                               <label for="password" class="col-md-12 col-form-label text-md-center">{{ __('Password') }}</label>
 
                               <div class="col-md-12">
-                                  <input id="password" type="password" placeholder="Enter your password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                  <input id="password" type="password" placeholder="Enter your password" class="form-control @error('password') is-invalid @enderror" name="password"  autocomplete="new-password">
 
-
+                                      @error('password')
                                       <span class="invalid-feedback" role="alert">
-                                          <strong></strong>
+                                          <strong>{{$message}}</strong>
                                       </span>
-
+                                      @enderror
                               </div>
                           </div>
 
@@ -91,7 +95,7 @@
                               <label for="password-confirm" class="col-md-12 col-form-label text-md-center">{{ __('Password Confirm') }}</label>
 
                               <div class="col-md-12">
-                                  <input id="password-confirm" type="password" placeholder="Confirm your password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                  <input id="password-confirm" type="password" placeholder="Confirm your password" class="form-control" name="password_confirmation"  autocomplete="new-password">
                               </div>
                           </div>
                         </div>
@@ -102,17 +106,16 @@
                               <label for="country" class="col-md-12 text-center">{{ __('Country') }}</label>
 
                                 <select id="country" class=" form-control " name="country" value="{{ old('country') }}"  autocomplete="country" autofocus>
-                                  <option value="AR">Argentina</option>
-                                  <option value="BR">Brasil</option>
+
                                 </select>
                                 <div class="opps">
                                   <!-- Mensaje de error -->
                                 </div>
-
+                                      @error('country')
                                       <span class="invalid-feedback" role="alert">
-                                          <strong></strong>
+                                          <strong>{{$message}}</strong>
                                       </span>
-
+                                      @enderror
                           </div>
                         </div>
 
@@ -121,29 +124,31 @@
                               <label for="city" class="col-md-12 text-center">{{ __('City') }}</label>
                                 <select id="city" class="form-control" name="city" value="{{ old('city') }}"  autocomplete="city" autofocus>
                                 </select>
+
                                 <div class="opps">
                                   <!-- Mensaje de error -->
                                 </div>
-
+                                    @error('city')
                                     <span class="invalid-feedback" role="alert">
-                                        <strong></strong>
+                                        <strong>{{$message}}</strong>
                                     </span>
-
+                                    @enderror
                           </div>
                         </div>
 
                         <div class="form-row col-md-12">
-                          <div class="form-group col-md-12 padding-null @error('file') has-error @enderror text-center">
-                              <label for="file" class="col-md-12 text-center">{{ __('Profile Picture') }}</label>
-                              <input id="file" type="file" class=" " name="foto" value="{{ old('file') }}"  autocomplete="file" autofocus>
+                          <div class="form-group col-md-12 padding-null @error('avatar') has-error @enderror text-center">
+                              <label for="avatar" class="col-md-12 text-center">{{ __('Profile Picture') }}</label>
+                              <input id="avatar" type="file" class=" " name="avatar" value="{{ old('avatar') }}"  autocomplete="avatar" autofocus>
                               <div class="opps">
                                 <!-- Mensaje de error -->
                               </div>
 
+                                @error('avatar')
                                 <span class="invalid-feedback" role="alert">
-                                  <strong></strong>
+                                  <strong>{{$message}}</strong>
                                 </span>
-
+                                @enderror
                           </div>
                         </div>
 

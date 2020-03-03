@@ -25,6 +25,7 @@ class CreateUsersTable extends Migration
             $table->string('avatar', 150);
             $table->rememberToken();
             $table->timestamps();
+            $table->integer('isAdmin')->nullable();
         });
     }
 

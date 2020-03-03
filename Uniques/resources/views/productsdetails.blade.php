@@ -7,7 +7,7 @@
 @extends('template')
 
 
-@section('pageTitle', 'Detalles')
+@section('pageTitle', 'Details')
 
 
 @section('mainContent')
@@ -26,8 +26,8 @@
             <p>{{$product->description}}<br><br>
               DESCRIPTION:
               <ul>
-                <li><i>Brand – {{$product->brand}}.</i></li>
-                <li><i>Category – {{$product->category}}.</i></li>
+                <li><i>Brand – {{$product->brand_id}}.</i></li>
+                <li><i>Category – {{$product->category_id}}.</i></li>
                 <li><i>Price – {{$product->price}} $.</i></li>
               </ul>
             </p>
@@ -35,7 +35,7 @@
         @auth
            @if (Auth::user()->isAdmin())
                <div class="col-md-2" >
-                 <form class="" action="/deleteProduct" method="post">
+                 <form class="" action="/delete-product" method="post">
                    {{csrf_field()}}
                    <div>
                      <input type="hidden" name="id" value="{{$product->id}}">
