@@ -8,12 +8,14 @@ use App\Brand;
 use App\Category;
 use App\Color;
 
+
 class ProductController extends Controller
 {
     public function list(){
         $products = Product::all();
         return view ("products-list", compact('products'));
     }
+
 
     public function detail($id){
       $product = Product::find($id);
@@ -26,7 +28,7 @@ class ProductController extends Controller
       $colors=Color::all();
       $brands = Brand::all();
       $categories = Category::all();
-      return view ("new-product", compact('colors', 'brands', 'categories'));
+      return view ("new-product", compact('colors', 'brands', 'categories'))->with('success','Successful creation');
     }
 
     public function uploadProduct(Request $req){
@@ -60,9 +62,10 @@ class ProductController extends Controller
 
       $newProduct = new Product();
       $newProduct->name = $req['name'];
-      $newProduct->brand = $req['brand'];
-      $newProduct->category = $req['category'];
       $newProduct->description = $req['description'];
+      $newProduct->price = $req['price'];
+      $newProduct->brand_id = $req['brand_id'];
+      $newProduct->category_id = $req['category_id'];
       $newProduct->color_id = $req['color_id'];
       $newProduct->image = $imagePath;
       $newProduct->save();
@@ -71,13 +74,14 @@ class ProductController extends Controller
       return view ("products-list", compact('products'));
     }
 
+
 //Para borrar producto
 
     public function delete(Request $req){
       $id = $req["id"];
       $product = Product::find($id);
       $product->delete();
-      return redirect('products-list');
+      return redirect('products-list')->with('success','Delete Successfully');
     }
 
 //Para editar los datos de la DB

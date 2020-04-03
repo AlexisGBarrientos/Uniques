@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-  protected $fillable = ['name', 'description', 'price', 'image', 'user_id', 'brand_id', 'category_id'];
+  protected $fillable = ['name', 'description', 'price', 'image', 'user_id', 'brand_id', 'category_id', 'color_id'];
 
 	public function colors(){
 		return $this->belongsToMany(Color::class)->withTimestamps();

@@ -12,50 +12,46 @@
 
 @section('mainContent')
 
+		<div class="container justify-content-center">
+			<section class="container col-6">
+				<div class="row mt-3">
+						<div class="card mt-3">
+							<img class="card-img-top img-fluid mt-3" alt="Responsive image" src="/storage/{{$product->image}}">
+							<div class="card-body">
+								<h3 class="card-title">{{$product->name}}</h3>
+			            <p class="card-text">{{$product->description}}</p>
+			              <p class="card-subtitle">DESCRIPTION:</p>
+			              <ul class="card-text mt-2">
+			                <li><i>Brand: {{$product->brand_id}}.</i></li>
+			                <li><i>Category: {{$product->category_id}}.</i></li>
+			                <li><i>Price: {{$product->price}} $.</i></li>
+			              </ul>
 
-  <div class="container">
-    <section class="container">
+										<div class="row" >
+											<div class="col">
+												<form action="/delete-product/{{ $product->id }}" method="post">
+												 @csrf
+												 <button type="submit" class="btn btn-block btn-danger btn-lg" name="button">Delete</button>
+												</form>
+													<a class="btn btn-block btn-lg btn-warning" href="/product-edit/{{$product->id}}/edit">Edit</a>
+											</div>
 
-      <article class="container" id="1">
-        <div class="col-md-4">
-          <img class="img-thumbnail" alt="Responsive image" src="/storage/{{$product->image}}" style="background-color:black" alt="">
-        </div>
+										</div>
+									<!-- @auth -->
+				           <!-- @if (Auth::user()->isAdmin()) -->
 
-        <div class="col-md-6">
-          <h3>{{$product->name}}</h3>
-            <p>{{$product->description}}<br><br>
-              DESCRIPTION:
-              <ul>
-                <li><i>Brand – {{$product->brand_id}}.</i></li>
-                <li><i>Category – {{$product->category_id}}.</i></li>
-                <li><i>Price – {{$product->price}} $.</i></li>
-              </ul>
-            </p>
-        </div>
-        @auth
-           @if (Auth::user()->isAdmin())
-               <div class="col-md-2" >
-                 <form class="" action="/delete-product" method="post">
-                   {{csrf_field()}}
-                   <div>
-                     <input type="hidden" name="id" value="{{$product->id}}">
-                   </div>
-                   <div >
-                     <input type="submit" name="" value="Product Destroy">
-                   </div>
-                 </form>
-                    <a href="/product-edit/{{$product->id}}/edit">Edit</a>
-               </div>
-             @endif
-          @endauth
+										<!-- @endif -->
+				           <!-- @endauth -->
 
-      </article>
+							</div>
 
 
-        </div>
+						</div>
+				</div>
 
-    </section>
 
 
+			</section>
+		</div>
 
 @endsection

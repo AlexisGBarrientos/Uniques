@@ -48,6 +48,9 @@ class CreateAllTables extends Migration
 				$table->unsignedBigInteger('category_id')->nullable();
     		$table->foreign('category_id')->references('id')->on('categories');
 
+        $table->unsignedBigInteger('color_id')->nullable();
+    		$table->foreign('color_id')->references('id')->on('colors');
+
         $table->timestamps();
       });
 

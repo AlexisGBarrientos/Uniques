@@ -9,17 +9,20 @@
 			<!-- Los productos -->
 			@foreach ($products as $oneProduct)
 				<div class="col-md-6 col-lg-4">
-					<div class="card" style="margin-bottom: 30px">
-						<img src="/images/{{ $oneProduct['image'] }}" class="card-img-top" alt="product image">
-						<div class="card-body">
-							<h4 class="card-title">{{ $oneProduct['name'] }}</h4>
-							<p class="card-text"> {{ $oneProduct['brand_id'] }} </p>
-							<p class="card-text"> {{ $oneProduct['category_id'] }} </p>
-							<p class="card-text"> {{ substr($oneProduct['description'], 0, 145) }}... </p>
+				
+						<div class="card mt-3">
+							<img src="/storage/{{ $oneProduct['image'] }}" class="card-img-top img-fluid my-3" alt="product image">
+							<div class="card-body">
+								<h4 class="card-title">{{ $oneProduct['name'] }}</h4>
+								<p class="card-text"> {{ $oneProduct['brand'] }} </p>
+								<p class="card-text"> {{ $oneProduct['category_id'] }} </p>
+								<p class="card-text text-justify"> {{ substr($oneProduct['description'], 0, 145) }}... </p>
 
-							<a href="/detail/{{ $oneProduct['id'] }}" class="btn btn-success">See Detail</a>
+								<a href="/detail/{{ $oneProduct['id'] }}" class="btn btn-success">See more</a>
+							</div>
 						</div>
-					</div>
+					
+
 				</div>
 			@endforeach
 			<!-- Los productos -->

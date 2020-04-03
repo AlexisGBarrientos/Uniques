@@ -5,13 +5,11 @@
 @section('cssLink', '/css/bootstrap.min.css')
 
 @section('mainContent')
-  <div class="container" style="align-items: start;">
+  <div class="container">
       <div class="row justify-content-center">
           <div class="col-xs-12 col-sm-8 col-md-6">
             <div class="card">
-              <div class="card-body">
                 <img src="/storage/avatars/{{ Auth::user()->avatar }}" class="card-img-top" alt="{{ Auth::user()->name }}" class="img-rounded img-responsive">
-              </div>
 
                 <div class="card-body">
                   <h2>Welcome {{ Auth::user()->name }} {{ Auth::user()->surname }}</h2>
@@ -39,4 +37,5 @@
   </div>
 
 <script src="/js/app.js"></script>
+<script src="/js/main.js"></script>
 @endsection
