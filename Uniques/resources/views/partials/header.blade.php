@@ -1,6 +1,6 @@
 
 <!-- Main-banner -->
-<div id="myCarousel" class="carousel slide" data-ride="carousel">
+<div id="myCarousel" class="carousel slide carousel-fade" data-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
       <img class="d-block w-100" src="/images/banner1.jpg" alt="First slide">

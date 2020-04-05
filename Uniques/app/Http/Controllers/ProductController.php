@@ -88,7 +88,9 @@ class ProductController extends Controller
 
     public function edit(Product $product){
       $colors = Color::all();
-      return view ("product-edit",compact('product', 'colors'));
+      $brands = Brand::all();
+      $categories = Category::all();
+      return view ("product-edit",compact('product', 'colors', 'brands', 'categories'));
     }
 
 //Actualiza los datos de la DB
@@ -97,8 +99,8 @@ class ProductController extends Controller
       $data = request()->validate([
         'name'  => 'required',
         'description' => 'required',
-        'brand' => '',
-        'category' => '',
+        'brand_id' => '',
+        'category_id' => '',
         'image' => '',
         'color_id' => 'required',
       ]);

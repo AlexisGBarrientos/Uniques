@@ -5,7 +5,7 @@
   <br>
   <br>
   <br>
-	<footer class="text-center card-footer text-muted bg-success">
+	<footer class="text-center card-footer text-muted bg-success ">
 		<p style="color:black">Copyright 2019 - Alexis Barrientos</p>
 	</footer>
 

@@ -34,7 +34,7 @@
 				</div>
 		 </div>
 
-		 <div class="row justify-content-around text-center">
+		 <div class="row justify-content-around text-center my-2">
 
 			 <div class="col-3">
 				 <div class="form-group">
@@ -80,11 +80,11 @@
 
 		 </div>
 
-		 <div class="row">
+		 <div class="row my-2">
 			 <div class="col-12">
 				 <div class="form-group">
-					 <label>Description:</label>
-					 <textarea class="textarea" name="description" rows="4" cols="50">{{ old ('description') ?? $product->description}} </textarea>
+					 <label>Description:</label><br>
+					 <textarea class="form-control" type="text" name="description" rows="4" cols="50">{{ old ('description') ?? $product->description}} </textarea>
 				 </div>
 				 @if ($errors->has("description"))
 					<span class="invalid-feedback" role="alert">
@@ -95,7 +95,7 @@
 		 </div>
 
 
-    <div class="row text-center justify-content-center">
+    <div class="row text-center justify-content-center my-2">
       <div class="col-8">
         <label class="label" for="">Image</label>
         <input type="file" name="image" value="">
@@ -107,7 +107,7 @@
       @endif
     </div>
 
-		<div class="row justify-content-center">
+		<div class="row justify-content-center my-2">
 			<div class="col-4 text-center mt-3">
 				<button type="submit" class="btn btn-success">UPDATE</button>
 				<a class="btn mr-2 btn-warning" href="/product-edit/{{$product->id}}/edit">Cancel</a>
