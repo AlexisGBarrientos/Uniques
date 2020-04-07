@@ -22,21 +22,22 @@ class UserController extends Controller
     }
 
 
-    public function update(){
+    public function update(User $user){
       $data = request()->validate ([
         'email' => 'required',
         'avatar' => '',
       ]);
+      //dd($data);
 
       if (request("avatar")) {
-       $imagePath = request("avatar")->store("uploads","public");//Guarda en la variable para poder trabajarla
+       $imagePath = request("avatar")->store("avatars","public");//Guarda en la variable para poder trabajarla
        }
        // ARRAY MERGE PERMITE MODIFICAR EL VALOR DE "IMAGE" PARA PASARLE EL DE $IMAGEPATH
        $user->update(array_merge(
          $data,
          ["avatar"=> $imagePath],
        ));
-       return back();
+       return view('/profile');
 
     }
 

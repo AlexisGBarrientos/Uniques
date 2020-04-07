@@ -19,6 +19,7 @@
 				<li class="nav-item"><a class="nav-link" href="/faq">Frequent questions</a></li>
 
 				@auth
+
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="/" id="dropProducts" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						Work products
@@ -33,6 +34,7 @@
 
 					</div>
 				</li>
+
 				@endauth
 			</ul>
 
@@ -51,7 +53,7 @@
 				@else
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="{{ route('profile') }}" id="dropNavBar" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							<img class="img-fluid rounded-circle bg-dark border-0 img-thumbnail" src="/storage/avatars/{{ Auth::user()->avatar }}" width="50">
+							<img class="img-fluid rounded-circle bg-dark border-0 img-thumbnail" src="/storage/{{ Auth::user()->avatar }}" width="50">
 							Hello {{ Auth::user()->name }}
 						</a>
 

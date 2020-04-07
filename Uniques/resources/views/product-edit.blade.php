@@ -36,13 +36,13 @@
 
 		 <div class="row justify-content-around text-center my-2">
 
-			 <div class="col-3">
+			<div class="col-3">
 				 <div class="form-group">
 					 <label>Brand:</label>
 					 <select class="custom-select" name="brand_id">
 					 		<option>Choise a Brand</option>
 								@foreach ($brands as $brand)
-									<option class="form-control" value="{{ $brand->id }}" {{ old('brand_id','') == $brand_id ? 'selected' : null }} > {{ $brand->name }}></option>
+									<option class="form-control" value="{{ $brand->id }}" {{ $product->brand_id == $brand->id ? 'selected' : null }} > {{ $brand->name }}</option>
 								@endforeach
 					 </select>
 					 @error ('brand')
@@ -57,7 +57,7 @@
 					 <select class="custom-select" name="category_id">
 						 <option>Choose category</option>
 						 @foreach ($categories as $category)
-							 <option value="{{ $category->id }}" {{ $product->category_id == $category->id ? 'selected' : null }}	> {{ $category->name }}"</option>
+							 <option value="{{ $category->id }}" {{ $product->category_id == $category->id ? 'selected' : null }}	> {{ $category->name }}</option>
 						 @endforeach
 					 </select>
 					 @error ('category')
@@ -72,12 +72,11 @@
 					 <select class="custom-select" name="color_id">
 						 <option>Elegi un color</option>
 						 @foreach ($colors as $color)
-							 <option value="{{$color->id}}" {{ old('color_id', "") == $color->id ? "selected" : null }}>{{$color->color}}</option>
+							 <option value="{{$color->id}}" {{ $product->color_id == $color->id ? "selected" : null }} > {{ $color->name }}</option>
 						 @endforeach
 					 </select>
 				 </div>
 			 </div>
-
 		 </div>
 
 		 <div class="row my-2">

@@ -19,7 +19,10 @@ class ProductController extends Controller
 
     public function detail($id){
       $product = Product::find($id);
-      return view("productsdetails", compact('product'));
+      // $brand_name = Brand::find($product->brand_id)->name;
+      // $category_name = Category::find($product->category_id)->name;
+      // $color_name = Color::find($product->color_id)->name;
+      return view("productsdetails", compact('product',));
     }
 
 //Para crear un producto
@@ -87,23 +90,30 @@ class ProductController extends Controller
 //Para editar los datos de la DB
 
     public function edit(Product $product){
-      $colors = Color::all();
       $brands = Brand::all();
       $categories = Category::all();
-      return view ("product-edit",compact('product', 'colors', 'brands', 'categories'));
+      $colors = Color::all();
+      return view ("product-edit",compact('product', 'brands', 'categories', 'colors'));
     }
 
 //Actualiza los datos de la DB
 
-    public function updateProduct(Product $product){
+    public function updateProduct(Product $product, $req){
+      $products = Product::all();
       $data = request()->validate([
         'name'  => 'required',
         'description' => 'required',
-        'brand_id' => '',
-        'category_id' => '',
-        'image' => '',
+        'brand_id' => 'required',
+        'category_id' => 'required',
         'color_id' => 'required',
+        'image' => '',
       ]);
+
+      $product->name = $req['name'];
+      $product->description = $req['description'];
+      $product->brand_id = $req['brand_id'];
+      $product->category_id = $req['category_id'];
+      $product->color_id = $req['color_id'];
 
 //Si se recibe imagen del form se guarda en "uploads"
     if (request('image')) {
@@ -112,8 +122,11 @@ class ProductController extends Controller
     }
 // ARRAY MERGE PERMITE MODIFICAR EL VALOR DE "IMAGE" PARA PASARLE EL DE $IMAGEPATH
       $product->update(array_merge($data,['image'=> $imagePath]));
+      $product-save();
 
-      $products = Product::all();
     return view('products-list', compact('products'));
    }
+
+
+
 }
