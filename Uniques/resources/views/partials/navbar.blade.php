@@ -39,7 +39,7 @@
 			</ul>
 
 			<ul class="navbar-nav ml-auto">
-				<form class="form-inline my-2 my-lg-0 " action="" method="post">
+				<form class="form-inline my-2 my-lg-0 " action="/search" method="GET">
 					<input class="form-control mr-sm-2" name="search" aria-label="search" placeholder="search">
 					<button class="btn btn-primary muted btn-sm my-sm-0" type="submit" name="search">Search</button>
 				</form>

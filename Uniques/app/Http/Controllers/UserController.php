@@ -33,10 +33,8 @@ class UserController extends Controller
        $imagePath = request("avatar")->store("avatars","public");//Guarda en la variable para poder trabajarla
        }
        // ARRAY MERGE PERMITE MODIFICAR EL VALOR DE "IMAGE" PARA PASARLE EL DE $IMAGEPATH
-       $user->update(array_merge(
-         $data,
-         ["avatar"=> $imagePath],
-       ));
+       $user->update(array_merge($data,["avatar"=> $imagePath], ));
+       
        return view('/profile');
 
     }
@@ -51,7 +49,7 @@ class UserController extends Controller
       $request->avatar->storeAs('avatars',$avatarName);
       $user->avatar = $avatarName;
       $user->save();
-    return back()->with('success','Successfully upload image');
+    return back();
 
     }
 }

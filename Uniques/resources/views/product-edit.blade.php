@@ -9,9 +9,10 @@
 	<div class="container-fluid card col-6" style="margin-top:30px; margin-bottom: 30px;">
 		<h2 class="card-title mt-3">Editing product: {{ $product->name }}</h2>
 
-		<form action="/product/edit/{{ $product->id }}" method="post">
+		<form action="/product-edit/{{ $product->id }}" method="post" enctype="multipart/form-data">
 			@csrf
-			{{ method_field('patch') }}
+			{{ method_field('put') }}
+
 
 			<div class="row justify-content-between">
 
@@ -97,7 +98,7 @@
     <div class="row text-center justify-content-center my-2">
       <div class="col-8">
         <label class="label" for="">Image</label>
-        <input type="file" name="image" value="">
+        <input type="file" name="image">
       </div>
       @if ($errors->has("image"))
         <span class="invalid-feedback" role="alert">

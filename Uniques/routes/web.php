@@ -31,15 +31,17 @@ Route::put('/user-edit/{user}', 'UserController@update')->name('user.edit');
 
 Route::get('/products-list', 'ProductController@list')->name('product.list');
 Route::get('/detail/{id}', 'ProductController@detail')->name('details');
-// Route::get('/new-product', 'ProductController@createProduct');
+
+Route::get('/product-edit/{product}/edit', 'ProductController@edit')->middleware('auth', 'isAdmin');
+Route::put('/product-edit/{product}', 'ProductController@updateProduct')->middleware('auth', 'isAdmin');
+
 Route::get('/new-product', 'ProductController@createProduct')->middleware('auth', );
-Route::post('/new-product', 'ProductController@uploadProduct');
-Route::post('/delete-product/{id}', 'ProductController@delete'); //!!!!!!!!!!!!!!!!
-Route::get('/product-edit/{product}/edit', 'ProductController@edit');
-Route::patch('/product-edit/{product}', 'ProductController@updateProduct');
+Route::post('/new-product', 'ProductController@uploadProduct')->middleware('auth', );
+
+Route::post('/delete-product/{id}', 'ProductController@delete')->middleware('auth', );
 
 //Ruta Buscador
-
+Route::get('/search', 'ProductController@search');
 
 Auth::routes();
 

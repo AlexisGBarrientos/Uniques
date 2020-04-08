@@ -28,6 +28,5 @@
 			<!-- Los productos -->
 			</div>
 		</div>
-	</div>
 	<!-- //Products -->
 @endsection

@@ -7,6 +7,7 @@ use App\Product;
 use App\Brand;
 use App\Category;
 use App\Color;
+use Monolog\Handler\ElasticSearchHandler;
 
 
 class ProductController extends Controller
@@ -23,6 +24,13 @@ class ProductController extends Controller
       // $category_name = Category::find($product->category_id)->name;
       // $color_name = Color::find($product->color_id)->name;
       return view("productsdetails", compact('product',));
+    }
+
+//Metodo search
+    public function search() {
+      $products = Product::where('name', 'LIKE', '%' . $_GET['search'] . '%')->get();
+
+      return view( '/search', compact('products'));
     }
 
 //Para crear un producto
@@ -84,7 +92,7 @@ class ProductController extends Controller
       $id = $req["id"];
       $product = Product::find($id);
       $product->delete();
-      return redirect('products-list')->with('success','Delete Successfully');
+      return redirect('products-list');
     }
 
 //Para editar los datos de la DB
@@ -98,8 +106,7 @@ class ProductController extends Controller
 
 //Actualiza los datos de la DB
 
-    public function updateProduct(Product $product, $req){
-      $products = Product::all();
+    public function updateProduct(Product $product){
       $data = request()->validate([
         'name'  => 'required',
         'description' => 'required',
@@ -108,12 +115,7 @@ class ProductController extends Controller
         'color_id' => 'required',
         'image' => '',
       ]);
-
-      $product->name = $req['name'];
-      $product->description = $req['description'];
-      $product->brand_id = $req['brand_id'];
-      $product->category_id = $req['category_id'];
-      $product->color_id = $req['color_id'];
+//dd($data);
 
 //Si se recibe imagen del form se guarda en "uploads"
     if (request('image')) {
@@ -121,9 +123,9 @@ class ProductController extends Controller
 
     }
 // ARRAY MERGE PERMITE MODIFICAR EL VALOR DE "IMAGE" PARA PASARLE EL DE $IMAGEPATH
-      $product->update(array_merge($data,['image'=> $imagePath]));
-      $product-save();
-
+      $product->update(array_merge($data,["image"=> $imagePath]));
+      //$products->save();
+      $products = Product::all();
     return view('products-list', compact('products'));
    }
 
