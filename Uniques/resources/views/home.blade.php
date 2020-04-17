@@ -6,7 +6,7 @@
 @section('mainContent')
 
 
-	<div class="text-center body-home">
+	<div class="text-center">
       <h1 class="display-2 ">Uniques, el mundo natural es la comunidad sagrada más grande a la que pertenecemos.</h1>
 
 

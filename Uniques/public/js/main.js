@@ -1,10 +1,13 @@
+$(document).ready ( function () {
 
-window.addEventListener('load', function(){
-	var paises = document.getElementById('country');
-	var provincias = document.getElementById('city');
-	var elFormulario = document.querySelector('.theForm');
+	//window.addEventListener('load', function(){
+		var paises = document.getElementById('country');
+		var provincias = document.getElementById('city');
+		var provinciasDiv = document.getElementById('provincia');
+		var elFormulario = document.querySelector('.theForm');
 
-	fetch('https://restcountries.eu/rest/v2/all')
+
+		fetch('https://restcountries.eu/rest/v2/all')
 		.then(function(response){
 			return response.json();
 		})
@@ -23,130 +26,196 @@ window.addEventListener('load', function(){
 				})
 				.then(function(jsonResponse){
 					for (var provincia of jsonResponse.provincias) {
-						// vos tenías jsonResponse.data y debe ser jsonResponse.provincias
-						provincias.innerHTML += `<option value="${provincia.id}">${provincia.nombre}</option>`; // aquí es provincia.id y provincia.nombre
+						provincias.innerHTML += `<option value="${provincia.id}">${provincia.nombre}</option>`;
 					}
 					console.log(jsonResponse.provincias);
-					provincias.parentElement.classList.remove('hidden');
+					provinciasDiv.style.display = 'block';
 				});
+
 			} else {
-				provincias.innerHTML = '';
-				provincias.parentElement.classList.add('hidden');
+				provinciasDiv.style.display = 'none';
+				provincia.innerHTML = '';
 			}
 		});
 
 
-	var elementosDelFormulario = elFormulario.elements;
-	// console.log(elementosDelFormulario);
-	var arrayDeElementos = Array.from(elementosDelFormulario);
-
-	arrayDeElementos.shift(); //quitamos la 1er posicion, el input hidden del token
-	arrayDeElementos.pop(); //quitamos el ultimo elemento, el submit
-	var errors = {}; //objeto literal para ver si un campo tiene error
-
-	var regexEmail = /^\w+([\.\+\-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
-
-	//Validacion primaria
-	arrayDeElementos.forEach( function (elemento) {
+		// Validaciones de formularios.
 
 
+		var elementosDelFormulario = elFormulario.elements;
+		//console.log(elementosDelFormulario);
 
-		elemento.addEventListener('blur', function(){
-			if ( this.value.trim() == '') {
-				this.classList.add('is-invalid');
-				this.nextElementSibling.innerHTML = `The field ${this.name} is required`;
-				errors[this.name] = true; //si un campo tiene error creamos un campor con el nombre y el valor de true
-			} else {
-				this.classList.remove('is-invalid'); // quita clase de error si existe
-				this.classList.add('is-valid'); // si la respuesta es correcta, se agrega la clase
-				this.nextElementSibling.innerHTML = ''; // quitamos el texto al msj de error
-				delete errors[this.name]; // si no hay error en campo se elimna dicha posicion
+		// Guardamos en variable -arrayDeElementos- los elementos en forma de array
+		var arrayDeElementos = Array.from(elementosDelFormulario);
 
-				//validacion de Campos del formulario
-				if (this.name === 'name') {
-					if (this.value.length < 3) {
-						this.classList.add('is-invalid');
-						this.nextElementSibling.innerHTML = 'Your name must have more than 3 letters';
-						errors[this.name] = true;
-					}
-				}
+		// Quitamos la 1er posicion, el input hidden del token
+		arrayDeElementos.shift();
 
-				if (this.name === 'surname') {
-					if (this.value.length < 3) {
-						this.classList.add('is-invalid');
-						this.nextElementSibling.innerHTML = 'Your surname must have more than 3 letters';
-						errors[this.name] = true;
-					}
-				}
+		// Quitamos el ultimo elemento, el submit
+		arrayDeElementos.pop();
 
-				if (this.name === 'email') {
+		// Creamos un objeto literal para ver si un campo tiene error
+		var errors = {};
 
-					if (!regexEmail.test(elementValue)) {
-						this.classList.add('is-invalid');
-						this.nextElementSibling.innerHTML = `Enter a valid email`;
+		var regexEmail = /^\w+([\.\+\-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
 
-						errors[this.name] = true;
-					} else {
+		var password = null;
+		var email = null;
 
-						this.classList.remove('is-invalid');
-						this.classList.add('is-valid');
-						this.nextElementSibling.innerHTML = '';
-					}
-				}
-				}
+		//Validacion primaria, recorriendo -arrayDeElementos-
+		arrayDeElementos.forEach( function (elemento) {
 
-				if (elemento.name === 'foto') {
-					elemento.addEventListener('change', function () {
-						var fileName = this.value.split('\\').pop();
-						this.nextElementSibling.innerText = fileName;
 
-						var fileExt = this.value.split('.').pop(); //quitamos la extension de dicho archivo
+			// Cuando el campo pierde el foco...
+			elemento.addEventListener('blur', function(){
 
-						var imageType = ['jpg','jpeg','png'];
+				if (this.value.trim() == '') {
+					this.classList.add('is-invalid');
+					this.nextElementSibling.innerHTML = 'The field ' + this.getAttribute('data-name') + ' is required';
+					errors[this.name] = true; //si un campo tiene error creamos un campor con el nombre y el valor de true
+				} else {
+					this.classList.remove('is-invalid'); // quita clase de Bootstrap de error si existiese
+					this.classList.add('is-valid'); // si la respuesta es correcta, se agrega la clase de Bootstrap
+					this.nextElementSibling.innerHTML = ''; // quitamos el texto al msj de error
+					delete errors[this.name]; // si no hay error en campo se elimna dicha posicion
 
-						var myExt = imageType.find(function(ext){
-							return ext === fileExt;
-						});
-
-						if (myExt === undefined) {
+					//validacion de Campos del formulario
+					if (this.name === 'name') {
+						if (this.value.length < 3) {
 							this.classList.add('is-invalid');
-							this.nextElementSibling.innerHTML = `The image must have the formats: jpg, jpeg y png`;
+							this.nextElementSibling.innerHTML = 'Your name must have more than 3 letters';
+							errors[this.name] = true;
+						}
+					}
+
+					if (this.name === 'surname') {
+						if (this.value.length < 3) {
+							this.classList.add('is-invalid');
+							this.nextElementSibling.innerHTML = 'Your surname must have more than 3 letters';
+							errors[this.name] = true;
+						}
+					}
+
+					if (this.name === 'password') {
+						if (this.value.length < 5 || this.value.match(/DH/) === null) {
+							this.classList.add('is-invalid');
+							this.nextElementSibling.innerHTML = 'Your password must contain at 5 letters and the initials DH';
+							errors[this.name]= true;
+						} else {
+							this.classList.remove('is-invalid');
+							this.classList.add('is-valid');
+							this.nextElementSibling.innerHTML = '';
+						}
+
+					}
+
+					if (this.name === 'password_confirmation') {
+						password = $('input[name="password"]').val();
+						if (this.value !== password) {
+							this.classList.add('is-invalid');
+							this.nextElementSibling.innerHTML = 'Your password does not match the chosen one';
+							errors[this.name]= true;
+						} else {
+							this.classList.remove('is-invalid');
+							this.classList.add('is-valid');
+							this.nextElementSibling.innerHTML = '';
+						}
+
+					}
+
+					if (this.name === 'email') {
+
+						if (!regexEmail.test(this.value)) {
+							this.classList.add('is-invalid');
+							this.nextElementSibling.innerHTML = 'Enter a valid email';
 
 							errors[this.name] = true;
 						} else {
+
 							this.classList.remove('is-invalid');
-							this.classList.add('is-valid')
+							this.classList.add('is-valid');
 							this.nextElementSibling.innerHTML = '';
-
-							delete errors[this.name];
 						}
+						email = this.value;
+					}
 
-					})
-				} else {
+					if (this.name === 'Re-email' && email !== null ) {
+
+						if (this.value !== email) {
+							this.classList.add('is-invalid');
+							this.nextElementSibling.innerHTML = 'Your email does not match the chosen one';
+
+							errors[this.name] = true;
+						} else {
+
+							this.classList.remove('is-invalid');
+							this.classList.add('is-valid');
+							this.nextElementSibling.innerHTML = '';
+						}
+					}
+
 
 				}
 
+			});
 
+			// Validacion del campo -avatar- para testear su extension cuando el campo cambia de valor
+			if (elemento.name === 'avatar') {
+				elemento.addEventListener('change', function () {
 
-		})
-	});
-				elFormulario.addEventListener('submit', function (event) {
+					var fileName = this.value.split('\\').pop();
+					this.nextElementSibling.innerText = fileName
+
+					var fileExt = this.value.split('.').pop(); //quitamos la extension de dicho archivo
+
+					var extensionOK = ['jpg','jpeg','png'];
+
+					// Buscamos la extension en las extensiones permitidas
+					var myExt = extensionOK.find(function(ext){
+						return ext === fileExtension;
+					});
+
+					// Si no se encuentra extension
+					if (myExt === undefined) {
+						this.classList.add('is-invalid');
+						this.nextElementSibling.innerHTML = 'The image must have the formats: jpg, jpeg y png';
+
+						errors[this.name] = true;
+					} else {
+						this.classList.remove('is-invalid');
+						this.classList.add('is-valid')
+						this.nextElementSibling.innerHTML = '';
+
+						delete errors[this.name];
+					}
+
+				});
+			}
+
+			// Cuando se quiera enviar el form
+			elFormulario.addEventListener('submit', function (event) {
+
+				// Iterando antes del submit
 				arrayDeElementos.forEach(function (elemento) {
+
 					var finalValue = elemento.value.trim();
 
 					if (finalValue === '') {
 						errors[elemento.name] = true;
+						input.classList.add('is-invalid');
+						input.nextElementSibling.innerHTML = 'The field' + input.getAttribute('data-nombre') + ' is required';
 					}
 				})
 
+				console.log('Los errores: ', errors);
+
 				if (Object.keys(errors).length > 0) {
 					alert('Please complete the fields');
-					console.log(errors);
 					event.preventDefault();
 				}
-			})
+			});
 
+		});
 
-
-
-});
+	//});
+} );

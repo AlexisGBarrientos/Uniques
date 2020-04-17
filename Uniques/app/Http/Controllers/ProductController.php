@@ -17,18 +17,30 @@ class ProductController extends Controller
         return view ("products-list", compact('products'));
     }
 
-
+//
     public function detail($id){
       $product = Product::find($id);
-      // $brand_name = Brand::find($product->brand_id)->name;
-      // $category_name = Category::find($product->category_id)->name;
-      // $color_name = Color::find($product->color_id)->name;
-      return view("productsdetails", compact('product',));
+      //dd($product);
+      $brand_name = Brand::find($product->brand_id)->name;
+
+
+      $category_name = Category::find($product->category_id)->name;
+
+
+      $color_name = Color::find($product->color_id)->name;
+
+
+
+      return view("productsdetails", compact('product', 'brand_name', 'category_name', 'color_name'));
     }
 
 //Metodo search
     public function search() {
-      $products = Product::where('name', 'LIKE', '%' . $_GET['search'] . '%')->get();
+      $param = "";
+      if(isset($_GET['search'])){
+        $param = $_GET['search'];
+      }
+      $products = Product::where('name', 'LIKE', '%' . $param . '%')->get();
 
       return view( '/search', compact('products'));
     }

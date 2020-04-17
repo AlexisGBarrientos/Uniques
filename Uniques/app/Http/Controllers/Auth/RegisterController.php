@@ -64,7 +64,7 @@ class RegisterController extends Controller
             'email' => ['required'],
             'password' => ['required'],
             'country' => ['required'],
-            // 'city' => ['required'],
+            'city' => [''],
             'avatar' => ['required']
         ]);
 
@@ -103,7 +103,7 @@ class RegisterController extends Controller
             'surname' => $data['surname'],
             'email' => $data['email'],
             'country' => $data['country'],
-            // 'city' => $data['city'],
+            'city' => $data['city'],
             'avatar' => $imagenFinal,
             'password' => Hash::make($data['password']),
         ]);

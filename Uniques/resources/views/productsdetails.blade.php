@@ -22,27 +22,26 @@
 			            <p class="card-text">{{$product->description}}</p>
 			              <p class="card-subtitle">DESCRIPTION:</p>
 			              <ul class="card-text mt-2">
-			                <li><i>Brand: {{$product->brand_id}}.</i></li>
-			                <li><i>Category: {{$product->category_id}}.</i></li>
+			                <li><i>Brand: {{$brand_name}}.</i></li>
+			                <li><i>Category: {{$category_name}}.</i></li>
+											<li><i>Color: {{$color_name}} .</i></li>
 			                <li><i>Price: {{$product->price}} $.</i></li>
 			              </ul>
 
-										<div class="row" >
-											<div class="col">
-												<form action="/delete-product/{{ $product->id }}" method="post">
-												 @csrf
-												 <button type="submit" class="btn btn-block btn-danger btn-lg" name="button">Delete</button>
-												</form>
-													<a class="btn btn-block btn-lg btn-warning" href="/product-edit/{{$product->id}}/edit">Edit</a>
+										@auth
+										@if (Auth::user()->isAdmin())
+											<div class="row" >
+												<div class="col">
+													<form action="/delete-product/{{ $product->id }}" method="post">
+													 @csrf
+													 <button type="submit" class="btn btn-block btn-danger btn-lg" name="button">Delete</button>
+													</form>
+														<a class="btn btn-block btn-lg btn-warning" href="/product-edit/{{$product->id}}/edit">Edit</a>
+												</div>
+
 											</div>
-
-										</div>
-									<!-- @auth -->
-				           <!-- @if (Auth::user()->isAdmin()) -->
-
-										<!-- @endif -->
-				           <!-- @endauth -->
-
+										@endif
+										@endauth
 							</div>
 
 

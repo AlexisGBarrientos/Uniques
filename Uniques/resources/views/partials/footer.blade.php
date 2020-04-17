@@ -5,8 +5,9 @@
   <br>
   <br>
   <br>
-	<footer class="text-center card-footer text-muted bg-success ">
-		<p style="color:black">Copyright 2019 - Alexis Barrientos</p>
+	<footer class="text-center card-footer text-light" style="background-color: rgba(0, 0, 0, 0.72);">
+		<p class="align-self-center my-5">Copyright 2020 - Alexis Barrientos</p>
+
 	</footer>
 
 	<!-- jQuery -->

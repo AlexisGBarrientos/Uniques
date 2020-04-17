@@ -34,7 +34,7 @@ class UserController extends Controller
        }
        // ARRAY MERGE PERMITE MODIFICAR EL VALOR DE "IMAGE" PARA PASARLE EL DE $IMAGEPATH
        $user->update(array_merge($data,["avatar"=> $imagePath], ));
-       
+
        return view('/profile');
 
     }

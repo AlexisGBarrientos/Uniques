@@ -7,7 +7,7 @@
 @section('mainContent')
 
     <div class="container" style="margin-top:30px; margin-bottom: 30px;">
-      <div class="row">
+      <div class="row justify-content-center">
         @foreach ($products as $oneProduct)
           <div class="col-md-6 col-lg-4">
 

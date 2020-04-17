@@ -11,5 +11,9 @@ class Color extends Model
 	public function products(){
 		return $this->belongsToMany(Product::class)->withTimestamps();
 	}
-  
+
+  public function getNameColor() {
+    return $this->name;
+  }
+
 }

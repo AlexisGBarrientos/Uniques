@@ -9,7 +9,7 @@
       <div class="row justify-content-center">
           <div class="col-xs-12 col-sm-8 col-md-6">
             <div class="card">
-                <img src="/storage/{{ Auth::user()->avatar }}" class="card-img-top" alt="{{ Auth::user()->name }}" class="img-rounded img-responsive">
+                <img src="{{ url('storage/avatars/' . Auth::user()->avatar) }}" class="card-img-top" alt="{{ Auth::user()->name }}" class="img-rounded img-responsive">
 
                 <div class="card-body">
                   <h2>Welcome {{ Auth::user()->name }} {{ Auth::user()->surname }}</h2>
@@ -35,7 +35,4 @@
           </div>
       </div>
   </div>
-
-<script src="/js/app.js"></script>
-<script src="/js/main.js"></script>
 @endsection
