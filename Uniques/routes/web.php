@@ -35,10 +35,10 @@ Route::get('/detail/{id}', 'ProductController@detail')->name('details');
 Route::get('/product-edit/{product}/edit', 'ProductController@edit')->middleware('auth', 'isAdmin');
 Route::put('/product-edit/{product}', 'ProductController@updateProduct')->middleware('auth', 'isAdmin');
 
-Route::get('/new-product', 'ProductController@createProduct')->middleware('auth', );
-Route::post('/new-product', 'ProductController@uploadProduct')->middleware('auth', );
+Route::get('/new-product', 'ProductController@createProduct')->middleware('auth');
+Route::post('/new-product', 'ProductController@uploadProduct')->middleware('auth');
 
-Route::post('/delete-product/{id}', 'ProductController@delete')->middleware('auth', );
+Route::post('/delete-product/{id}', 'ProductController@delete')->middleware('auth');
 
 //Ruta Buscador
 Route::get('/search', 'ProductController@search');

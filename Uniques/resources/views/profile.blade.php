@@ -9,7 +9,8 @@
       <div class="row justify-content-center">
           <div class="col-xs-12 col-sm-8 col-md-6">
             <div class="card">
-                <img src="/storage/{{ Auth::user()->avatar }}" class="card-img-top" alt="{{ Auth::user()->name }}" class="img-rounded img-responsive">
+                {{-- La ruta donde encontrás la imagen es /storage/avatars/... --}}
+                <img src="/storage/avatars/{{ Auth::user()->avatar }}" class="card-img-top" alt="{{ Auth::user()->name }}" class="img-rounded img-responsive">
 
                 <div class="card-body">
                   <h2>Welcome {{ Auth::user()->name }} {{ Auth::user()->surname }}</h2>
