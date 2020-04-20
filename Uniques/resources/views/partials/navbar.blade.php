@@ -27,6 +27,7 @@
 					<div class="dropdown-menu mt-3" aria-labelledby="dropProducts" style="background-color: rgba(0, 0, 0, 0.72);">
 						<a class="dropdown-item text-warning" href="/products-list">Products</a>
 						<div class="dropdown-divider"></div>
+            			{{-- si es un usuario logueado --}}
 
 							<a class="dropdown-item text-warning" href="/new-product">Create product</a>
 							<a class="dropdown-item text-warning" href="/product-edit">Edit product</a>
@@ -53,7 +54,7 @@
 				@else
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle text-warning" href="{{ route('profile') }}" id="dropNavBar" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							<img class="img-fluid rounded-circle bg-dark border-0 img-thumbnail" src="/storage/avatars/{{ Auth::user()->avatar }}" width="50">
+							<img class="img-fluid rounded-circle bg-dark border-0 img-thumbnail" src="/storage/avatars/{{ Auth::user()->avatar }}" width="60">
 							Hello {{ Auth::user()->name }}
 						</a>
 
