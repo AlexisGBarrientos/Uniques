@@ -15,7 +15,7 @@
 	<div class="row">
 		<div class="col-12">
 			<div class="accordion" id="accordionExample">
-				<div class="card shadow-lg p-3 mb-5 rounded">
+				<div class="card div-shadow p-3 mb-5 rounded">
 					<div class="card-header">
 						<h2 class="mb-0">
 							<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -31,7 +31,7 @@
 					</div>
 				</div>
 
-				<div class="card shadow-lg p-3 mb-5 rounded">
+				<div class="card div-shadow p-3 mb-5 rounded">
 					<div class="card-header">
 						<h2 class="mb-0">
 							<button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
@@ -46,7 +46,7 @@
 					</div>
 				</div>
 
-				<div class="card shadow-lg p-3 mb-5 rounded">
+				<div class="card div-shadow p-3 mb-5 rounded">
 					<div class="card-header">
 						<h2 class="mb-0">
 							<button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
@@ -61,7 +61,7 @@
 					</div>
 				</div>
 
-				<div class="card shadow-lg p-3 mb-5 rounded">
+				<div class="card div-shadow p-3 mb-5 rounded">
 					<div class="card-header">
 						<h2 class="mb-0">
 							<button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
@@ -76,7 +76,7 @@
 					</div>
 				</div>
 
-				<div class="card shadow-lg p-3 mb-5 rounded">
+				<div class="card div-shadow p-3 mb-5 rounded">
 					<div class="card-header">
 						<h2 class="mb-0">
 							<button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">

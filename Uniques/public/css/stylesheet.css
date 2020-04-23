@@ -3,7 +3,16 @@
 
 }
 
+.div-shadow {
+  -webkit-box-shadow: -10px 10px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: -10px 10px 5px 0px rgba(0,0,0,0.75);
+  box-shadow: -10px 10px 5px 0px rgba(0,0,0,0.75);
+}
+
 .card {
+  -webkit-box-shadow: -10px 10px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: -10px 10px 5px 0px rgba(0,0,0,0.75);
+  box-shadow: -10px 10px 5px 0px rgba(0,0,0,0.75);
   background-color:rgba(170, 249, 154, 0.93);
   border-radius: 15px;
 }

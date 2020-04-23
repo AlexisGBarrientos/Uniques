@@ -4,7 +4,7 @@
 <div class="container container-form">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <div class="card shadow-lg p-3 mb-5 rounded">
+            <div class="card div-shadow p-3 mb-5 rounded">
                 <!-- <div class="card-header">{{ __('Login') }}</div> -->
 
                 <div class="card-body">
