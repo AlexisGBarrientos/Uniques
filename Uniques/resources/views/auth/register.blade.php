@@ -4,7 +4,7 @@
 <div class="container container-form">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card shadow-lg p-3 mb-5 rounded">
+            <div class="card div-shadow p-3 mb-5 rounded ">
 
                 <div class="card-body">
                     <form method="POST" class="theForm" action="{{ route('register') }}" enctype="multipart/form-data">

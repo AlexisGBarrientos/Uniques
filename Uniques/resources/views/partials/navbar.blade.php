@@ -4,7 +4,7 @@
 		{{ session('adminError') }}
 	</div>
 @endif
-<nav class="navbar navbar-expand-lg navbar-dark shadow p-3 mb-5 rounded ">
+<nav class="navbar navbar-expand-lg navbar-dark p-3 mb-5 rounded ">
 	<div class="container">
 		<a class="navbar-brand" href="/">Uniques</a>
 
@@ -54,7 +54,7 @@
 				@else
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle text-warning" href="{{ route('profile') }}" id="dropNavBar" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							<img class="img-fluid rounded-circle bg-dark border-0 img-thumbnail" src="/storage/avatars/{{ Auth::user()->avatar }}" width="60">
+							<img class="img-fluid rounded-circle bg-dark border-0 img-thumbnail" src="/storage/avatars/{{ Auth::user()->avatar }}" width="50">
 							Hello {{ Auth::user()->name }}
 						</a>
 
